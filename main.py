@@ -5,6 +5,8 @@ class Game:
         self._choices = ["kamień", "papier", "nożyce"]
         self._player_choice = None
         self._computer_choice = None
+        self._player_wins = 0
+        self._computer_wins = 0
 
     def get_player_choice(self):
         return self._player_choice
@@ -26,14 +28,17 @@ class Game:
                 (self._player_choice == "papier" and self._computer_choice == "kamień") or
                 (self._player_choice == "nożyce" and self._computer_choice == "papier")
         ):
+            self._player_wins += 1
             return "Gratulacje, wygrałeś!"
         else:
+            self._computer_wins += 1
             return "Niestety, przegrałeś!"
 
     def start(self):
         print("Witaj! Zagrajmy w Kamień, Papier, Nożyce.")
 
         while True:
+            print(f"\nWygrane: Gracz - {self._player_wins}, Komputer - {self._computer_wins}\n")
             player_choice = input("Wybierz swoją opcję (kamień, papier, nożyce): ")
             self.set_player_choice(player_choice)
 
@@ -59,8 +64,10 @@ class RockPaperScissors(Game):
                 (self.get_player_choice() == "papier" and self._computer_choice == "kamień") or
                 (self.get_player_choice() == "nożyce" and self._computer_choice == "papier")
         ):
+            self._player_wins += 1
             return "Gratulacje, wygrałeś!"
         else:
+            self._computer_wins += 1
             return "Niestety, przegrałeś!"
 
 game = RockPaperScissors()
